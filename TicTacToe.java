@@ -79,48 +79,6 @@ public class TicTacToe {
      * Methods that you create to manage repetitive tasks.
      */
 
-
-
-    /**
-     * EVENT LISTENERS
-     * Subclasses that handle events (button clicks, mouse clicks and moves,
-     * key presses, timer expirations)
-     */
-
-	/**
-	 * Implements the listener for the buttons on the board.
-	 */
-	private static class ButtonHandler implements ActionListener {
-		private int buttonIndex;
-
-		/**
-		 * Creates a ButtonHandler for the button as the given index.
-		 * @param buttonIndex Index of the button.
-		 */
-		public ButtonHandler (int buttonIndex) {
-			this.buttonIndex = buttonIndex;
-		}
-
-		/**
-		 * Method called when the button is pressed.
-		 */
-		public void actionPerformed(ActionEvent e) {
-			turns++;
-			buttons[buttonIndex].setEnabled(false);
-			if (turns % 2 == 1) {
-				buttons[buttonIndex].setText("X");
-				squares[buttonIndex] = 1;
-				buttons[buttonIndex].setBackground(Color.RED);
-			}
-			else {
-				buttons[buttonIndex].setText("O");
-				squares[buttonIndex] = 2;
-				buttons[buttonIndex].setBackground(Color.BLUE);
-			}
-			checkForWin();
-		}
-	}
-
 	/**
 	 * Checks to see if the game is over.  If it is, inform the user and ask if they want to play again.
 	 */
@@ -176,6 +134,48 @@ public class TicTacToe {
 			buttons[buttonIndex].setBackground(Color.WHITE);
 			squares[buttonIndex] = 0;
 			turns = 0;
+		}
+	}
+
+
+
+    /**
+     * EVENT LISTENERS
+     * Subclasses that handle events (button clicks, mouse clicks and moves,
+     * key presses, timer expirations)
+     */
+
+	/**
+	 * Implements the listener for the buttons on the board.
+	 */
+	private static class ButtonHandler implements ActionListener {
+		private int buttonIndex;
+
+		/**
+		 * Creates a ButtonHandler for the button as the given index.
+		 * @param buttonIndex Index of the button.
+		 */
+		public ButtonHandler (int buttonIndex) {
+			this.buttonIndex = buttonIndex;
+		}
+
+		/**
+		 * Method called when the button is pressed.
+		 */
+		public void actionPerformed(ActionEvent e) {
+			turns++;
+			buttons[buttonIndex].setEnabled(false);
+			if (turns % 2 == 1) {
+				buttons[buttonIndex].setText("X");
+				squares[buttonIndex] = 1;
+				buttons[buttonIndex].setBackground(Color.RED);
+			}
+			else {
+				buttons[buttonIndex].setText("O");
+				squares[buttonIndex] = 2;
+				buttons[buttonIndex].setBackground(Color.BLUE);
+			}
+			checkForWin();
 		}
 	}
 }
