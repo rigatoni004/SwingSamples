@@ -1,0 +1,14 @@
+Who Wants to Be a Millionaire? is a multiple choice trivia game show.  You will
+be asked up to 15 questions.  Each questions that you answer correctly will
+move you up a level on the prize ladder.  Answer a question and you may lose
+some of your earnings.
+
+The $1000 and $32000 are safety net amounts.  Once you get to these amounts,
+you are guaranteed these earnings.  If you get a questions wrong you loose
+everything except these safety net amounts.  At any point, you have the option
+of walking away with your current earnings (see the Game menu).  If you answer
+all 15 questions correctly, then you win a million dollars!
+
+DISCLAIMER: You will not actually win any money playing this game!
+
+NOTE: This version of the game does not include lifelines.
