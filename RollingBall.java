@@ -23,6 +23,8 @@ public class RollingBall {
 	 * Declare the objects and variables that you want to access across
      * multiple methods.
 	 */
+	
+	static JFrame frame;
 
 	static JLabel ball;
 
@@ -36,10 +38,10 @@ public class RollingBall {
 	static final int MAX_BALL_X = 750;
 	static final int MAX_BALL_Y = 550;
 
-	static final int SPEED = 100;
-	static final int MOVE_DISTANCE = 10;
-	static int moveX = MOVE_DISTANCE;
-	static int moveY = MOVE_DISTANCE;
+	static final int DELAY = 10;  // updates every 10 ms (100 frames/second)
+	static final int MOVE_SPEED = 2;  // in pixels per frame
+	static int moveX = MOVE_SPEED;
+	static int moveY = MOVE_SPEED;
 
 
 	/**
@@ -48,7 +50,7 @@ public class RollingBall {
 	 */
 	private static void createMainWindow () {
 		// Create and set up the window.
-		JFrame frame = new JFrame ("Frame Title");
+		frame = new JFrame ("Frame Title");
 		frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 		frame.setResizable (false);
 
@@ -59,7 +61,7 @@ public class RollingBall {
         // Load the ball images for the animation.
 		ballImages = new ImageIcon [NUMBER_OF_BALLS];
 		for (int index = 0; index < NUMBER_OF_BALLS; index++) {
-			Image image = new ImageIcon("resources/sball" + index + ".png").getImage();
+			Image image = new ImageIcon("resources/sball" + (5 - index) + ".png").getImage();
 			Image scaledImage = image.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
 			ballImages[index] = new ImageIcon(scaledImage);
 		}
@@ -70,7 +72,7 @@ public class RollingBall {
 		contentPane.add(ball);
 
 		// Create animation timer
-		Timer animateTimer = new Timer(SPEED, new AnimationTimerHandler());
+		Timer animateTimer = new Timer(DELAY, new AnimationTimerHandler());
 		animateTimer.start();
 
 		// Add the panel to the frame
@@ -119,13 +121,12 @@ public class RollingBall {
 			ball.setLocation(ballX, ballY);
 
 			// Change the ball image
-			if (moveX < 0) {
-				ballIndex = Math.floorMod(ballIndex + 1, NUMBER_OF_BALLS);
-			}
-			else {
-				ballIndex = Math.floorMod(ballIndex - 1, NUMBER_OF_BALLS);
-			}
+			ballIndex = ballX / 10 % 6;
 			ball.setIcon(ballImages[ballIndex]);
+			
+			// Repaint the frame (handles any stuttering)
+			frame.repaint();
+			frame.getToolkit().sync();
 		}
 	}
 
