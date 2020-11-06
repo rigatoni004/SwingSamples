@@ -38,8 +38,8 @@ public class RollingBall {
 	static final int MAX_BALL_X = 750;
 	static final int MAX_BALL_Y = 550;
 
-	static final int DELAY = 10;  // updates every 10 ms (100 frames/second)
-	static final int MOVE_SPEED = 2;  // in pixels per frame
+	static final int DELAY = 5;  // updates every 10 ms (100 frames/second)
+	static final int MOVE_SPEED = 100;  // in pixels per frame
 	static int moveX = MOVE_SPEED;
 	static int moveY = MOVE_SPEED;
 
