@@ -49,13 +49,13 @@ public class Millionaire {
 	static JLabel finalAnswerBoxQuestion = new JLabel();
 	static JButton finalAnswerBoxConfirm = new JButton("YES");
 	static JButton finalAnswerBoxDeny = new JButton("NO");
-	static DefaultListModel leaderboard;
+	static DefaultListModel<String> leaderboard;
 	static JFrame leaderboardWindow;
 	static ImageIcon logo = new ImageIcon(new ImageIcon("resources/millionaire_icon.png").getImage()
 			.getScaledInstance(48, 48, Image.SCALE_SMOOTH));
 
 	// The prize amount for each level
-	static final int [] PRIZES = {0, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 
+	static final int [] PRIZES = {0, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000,
 		64000, 125000, 250000, 500000, 1000000};
 
 	// Constants for the colors used.
@@ -69,10 +69,10 @@ public class Millionaire {
 	static final Color CHOICE_COLOR = new Color(219, 131, 1);
 
 	static Border raisedBorder = BorderFactory.createCompoundBorder(BorderFactory.createBevelBorder(
-			BevelBorder.RAISED, BORDER_COLOR_HIGHLIGHT, BORDER_COLOR_SHADOW), 
+			BevelBorder.RAISED, BORDER_COLOR_HIGHLIGHT, BORDER_COLOR_SHADOW),
 			BorderFactory.createLineBorder(BORDER_COLOR, 3));
 	static Border raisedBorderThick = BorderFactory.createCompoundBorder(
-			BorderFactory.createBevelBorder(BevelBorder.RAISED, BORDER_COLOR_HIGHLIGHT, 
+			BorderFactory.createBevelBorder(BevelBorder.RAISED, BORDER_COLOR_HIGHLIGHT,
 					BORDER_COLOR_SHADOW), BorderFactory.createLineBorder(BORDER_COLOR, 6));
 
 	// File resource locations
@@ -303,9 +303,9 @@ public class Millionaire {
 		leaderboardWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		JPanel leaderboardPanel = new JPanel();
 		leaderboardPanel.setLayout(new BorderLayout());
-		leaderboard = new DefaultListModel();
+		leaderboard = new DefaultListModel<String>();
 		readLeaderboard();
-		JList leaderboardList = new JList(leaderboard);
+		JList<String> leaderboardList = new JList<String>(leaderboard);
 		leaderboardList.setFont(new Font("Verdana", 0, 16));
 		JScrollPane leaderboardScroller = new JScrollPane(leaderboardList);
 		leaderboardScroller.setPreferredSize(new Dimension(400, 300));
@@ -611,7 +611,7 @@ public class Millionaire {
 	 * If not, quit the program.
 	 */
 	public static void replay () {
-		int response = JOptionPane.showConfirmDialog(frame, "Would you like to play again?", 
+		int response = JOptionPane.showConfirmDialog(frame, "Would you like to play again?",
 				"Game Over", JOptionPane.YES_NO_OPTION);
 		if (response == JOptionPane.NO_OPTION) {
 			System.exit(0);  // Zero error code means no errors
@@ -625,7 +625,7 @@ public class Millionaire {
 	 * NOTE: for some reason the HTML pixel width does not match the Swing component pixel width.
 	 */
 	public static String makeWrapable(String text, int width) {
-		return "<html><body align=\"center\" style=\"width:" + width + "px;\">" + text + 
+		return "<html><body align=\"center\" style=\"width:" + width + "px;\">" + text +
 				"</body></html>";
 	}
 
@@ -939,12 +939,12 @@ public class Millionaire {
 				input.close();
 
 				// Show the instructions dialog
-				JOptionPane.showMessageDialog(frame, instructions, "Instructions", 
+				JOptionPane.showMessageDialog(frame, instructions, "Instructions",
 						JOptionPane.INFORMATION_MESSAGE, logo);
 			}
 			catch (Exception ex) {
 				System.err.println("Could not open instructions file.");
-				JOptionPane.showMessageDialog(frame, "COULD NOT OPEN INSTRUCTIONS!", "Error", 
+				JOptionPane.showMessageDialog(frame, "COULD NOT OPEN INSTRUCTIONS!", "Error",
 						JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -962,7 +962,7 @@ public class Millionaire {
 			}
 			catch (Exception ex) {
 				System.err.println("Could not open the webpage!");
-				JOptionPane.showMessageDialog(frame, "Visit " + WIKIPEDIA_PAGE + 
+				JOptionPane.showMessageDialog(frame, "Visit " + WIKIPEDIA_PAGE +
 						" for more information.", "What Is ...", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
@@ -990,7 +990,7 @@ public class Millionaire {
 			}
 
 			// Show the about dialog.
-			JOptionPane.showMessageDialog(frame, "Version " + VERSION + "\n\n" + license, 
+			JOptionPane.showMessageDialog(frame, "Version " + VERSION + "\n\n" + license,
 					"About This Program", JOptionPane.INFORMATION_MESSAGE, logo);
 		}
 	}
