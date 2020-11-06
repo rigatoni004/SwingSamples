@@ -45,7 +45,7 @@ public class DriveAround {
 	final static int Y_TRUCK_OFFSET = 20;
 	
 	// How far to move the vehicles for each timer event
-	final static int SPEED = 100;
+	final static int SPEED = 50;
 	final static int MOVE_DISTANCE = 5;
 	static int deltaXCar = 0;
 	static int deltaYCar = 0;
